@@ -1,0 +1,72 @@
+<ion-header class="no-header">
+	<ion-navbar>
+		<ion-title>Registro</ion-title>
+	</ion-navbar>
+</ion-header>
+
+
+<ion-content>
+
+	<div class="register">
+
+		<div class="logo">
+			<img src="assets/imgs/appicon.svg" alt="Ionic logo">
+		</div>
+
+		<form #signupForm="ngForm">
+			<ion-list no-lines>
+				<ion-item>
+					<ion-label stacked color="primary">Correo electrónico</ion-label>
+					<ion-input [(ngModel)]="signup.email" name="email" type="text" #email="ngModel" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+					spellcheck="false" autocapitalize="off">
+					</ion-input>
+				</ion-item>
+				<p ion-text *ngIf="!email.valid && email.touched" color="danger" padding-left>
+					El correo electrónico no es válido
+				</p>
+
+				<ion-item>
+					<ion-label stacked color="primary">Nombre</ion-label>
+					<ion-input [(ngModel)]="signup.name" name="name" type="text" #name="ngModel" text-capitalize	 required>
+					</ion-input>
+				</ion-item>
+				<p ion-text *ngIf="!name.valid && name.touched"  color="danger" padding-left>
+					El nombre es requerido
+				</p>
+
+				<ion-item>
+					<ion-label stacked color="primary">Apellido</ion-label>
+					<ion-input [(ngModel)]="signup.surname" name="surname" type="text" #surname="ngModel" text-capitalize	 required>
+					</ion-input>
+				</ion-item>
+				<p ion-text *ngIf="!surname.valid && surname.touched" color="danger" padding-left>
+					El Apellido es requerido
+				</p>
+
+				<ion-item>
+					<ion-label stacked color="primary">Nombre de Usuario</ion-label>
+					<ion-input [(ngModel)]="signup.nick" name="nick" type="text" #nick="ngModel" required>
+					</ion-input>
+				</ion-item>
+				<p ion-text *ngIf="!nick.valid && nick.touched" color="danger" padding-left>
+					El nombre de usuario es requerido
+				</p>
+
+				<ion-item>
+					<ion-label stacked color="primary">Password</ion-label>
+					<ion-input [(ngModel)]="signup.password" name="password" type="password" #password="ngModel" required>
+					</ion-input>
+				</ion-item>
+				<p ion-text *ngIf="!password.valid && password.touched" color="danger" padding-left>
+					El password es requerido
+				</p>
+				<br>
+				
+			</ion-list>
+
+			<div padding>
+				<button ion-button (click)="onSignup(signupForm)" type="submit" [disabled]="!signupForm.form.valid" block>Registrarte</button>
+			</div>
+		</form>
+	</div>
+</ion-content>

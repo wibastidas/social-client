@@ -1,0 +1,64 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title text-center>Editar Perfil</ion-title>
+        <ion-buttons end>
+          <button ion-button icon-only [disabled]="!habilitarGuardarCambios"  (click)="onUpdate()">
+          <ion-icon name="checkmark" color="primary"></ion-icon>
+          </button>
+        </ion-buttons>
+      </ion-navbar>
+  </ion-header>
+
+
+  <ion-content>
+
+      <div class="account">
+      
+        <ion-item no-lines>
+          <div class="logo">
+            <input type="file" accept="image/x-png,image/jpeg" (change)="fileChangeEvent($event)" id="file-input" style="opacity: 0" #fileInp>
+            <img #imagen
+                       src="{{ urlImage }}"
+                       style="visibility:hidden;"
+                       onload="this.style.visibility='visible'" onerror="this.src='http://www.gravatar.com/avatar?d=mm&s=140'"/>
+          </div>
+        </ion-item>
+
+    
+        <form [formGroup]="modificarUsuario" padding>
+            <ion-item>
+              <!--ion-icon color="primary-light"  name="person" item-left></ion-icon-->
+              <ion-label stacked>Nombre (*):</ion-label>
+              <ion-input formControlName="name" [(ngModel)]="name"  type="text" placeholder="Nombre" (ngModelChange)='cambioForm()' required></ion-input>
+            </ion-item>
+            
+            <ion-item>
+              <!--ion-icon color="primary-light"  name="person" item-left></ion-icon-->
+              <ion-label stacked>Apellido (*):</ion-label>
+              <ion-input formControlName="surname"  [(ngModel)]="surname"  (ngModelChange)='cambioForm()' type="text" placeholder="Apellido" 
+                required></ion-input>
+            </ion-item>
+            
+            <ion-item>
+              <!--ion-icon color="primary-light"  name="person" item-left></ion-icon-->
+              <ion-label stacked> Nick o nombre de usuario(*):</ion-label>
+              <ion-input formControlName="nick" [(ngModel)]="nick" type="text" (ngModelChange)='cambioForm()' placeholder="Nick" 
+                required></ion-input>
+            </ion-item>
+            
+            <ion-item>
+              <!--ion-icon color="primary-light"  name="mail" item-left></ion-icon-->
+              <ion-label stacked>Email (*):</ion-label>
+              <ion-input formControlName="email" type="email"  [(ngModel)]="email"  (ngModelChange)='cambioForm()' placeholder="email@example.com"></ion-input>
+            </ion-item>
+    
+            <!--div padding>
+              <button ion-button icon-left color='primary-dark' block type="submit" [disabled]="!habilitarGuardarCambios" (click)="onUpdate()">
+                <ion-icon name="create"></ion-icon>
+                Guardar
+              </button>
+            </div-->
+        </form>
+    
+      </div>
+    </ion-content>

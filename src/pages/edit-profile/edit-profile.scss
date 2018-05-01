@@ -1,0 +1,47 @@
+@media only screen and (min-width: 768px) {
+    /* For desktop: */
+  
+    .account {
+      max-width: 55%;
+      margin: 0 auto;
+      padding-top: 30px;
+    }
+  }
+  
+  // Styles for all of the user pages:
+  // Login, Signup, Support
+  
+  page-edit-profile {
+    .logo {
+      min-height: 200px;
+      text-align: center;
+  
+      img {
+        //max-width: 150px;
+        //max-height: 150px;
+        border-radius: 50%;
+        margin: 10px auto;
+        width: 150px;
+        height: 150px;
+      }
+    }
+  
+    .list {
+      margin-bottom: 0;
+    }
+  
+    #myFileInput{
+      position: absolute;
+      opacity: 0;
+    }
+
+    #file-input {
+      opacity: 0;
+      position: absolute;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      left: 0;
+      z-index: 999;
+    }
+  }

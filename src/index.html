@@ -15,6 +15,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
 
+  
   <!-- cordova.js required for cordova apps (remove if not needed) -->
   <script src="cordova.js"></script>
 
@@ -30,6 +31,22 @@
   <link href="build/main.css" rel="stylesheet">
 
 </head>
+
+<script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyBttxIUA1YzMq5HbScumGm51_v5Fh3hp0Q",
+    authDomain: "cliente-inmigram.firebaseapp.com",
+    databaseURL: "https://cliente-inmigram.firebaseio.com",
+    projectId: "cliente-inmigram",
+    storageBucket: "cliente-inmigram.appspot.com",
+    messagingSenderId: "910606884728"
+  };
+  firebase.initializeApp(config);
+</script>
+
+
 <body>
 
   <!-- Ionic's root component and where the app will load -->

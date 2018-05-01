@@ -1,0 +1,109 @@
+<ion-header>
+	<ion-navbar>
+		<ion-title text-center>{{ nick }}</ion-title>
+		<ion-buttons end>
+			<button ion-button icon-only (click)="goToOptions()">
+				<ion-icon name="md-more"></ion-icon>
+			</button>
+		</ion-buttons>
+	</ion-navbar>
+</ion-header>
+
+
+<ion-content>
+
+		<div class="profile"> 
+				<ion-row>
+						<ion-col col-3 padding> 
+								<img class="avatar" #imagen 
+								src="{{ urlImage }}"
+								style="visibility:hidden;"
+								onload="this.style.visibility='visible'" onerror="this.src='http://www.gravatar.com/avatar?d=mm&s=140'"/> 
+						</ion-col>
+						<ion-col col-3 text-center >
+							<h6>{{publications}}</h6>
+							<p class="social-presence-title" no-padding no-margin>Posts</p>
+						</ion-col>
+						<ion-col  (click)="getFollowed()" col-3 text-center>
+							<h6>{{followed}}</h6>
+							<p class="social-presence-title" no-paddin no-margin>Seguidores</p>
+						</ion-col>
+						<ion-col (click)="getFollowing()" col-3 text-center>
+							<h6>{{following}}</h6>
+							<p class="social-presence-title" no-paddin no-margin>Seguidos</p>
+						</ion-col>
+					</ion-row>
+			
+					<ion-row no-padding no-margin>
+						<ion-col no-padding no-margin col-4></ion-col>
+							<ion-col no-padding no-margin text-center col-8>
+							<button *ngIf="mostrarEditUSer" class="edit-button" (click)="goEditProfile()">Editar Perfil</button>
+							<button *ngIf="loSigo && !mostrarEditUSer" class="edit-button" (click)="unFollowUser()">Dejar de seguir</button>
+							<button *ngIf="!loSigo && !mostrarEditUSer" class="edit-button" (click)="followUser()">Seguir</button>
+						</ion-col>
+						<ion-col col-3></ion-col>
+					</ion-row>
+			
+					<div padding>
+						<p class="especial-paddin"><b>{{ name }} {{ surname }}</b></p>
+						<p class="especial-margin" class="info">@{{ nick }}</p>
+						<!--p no-padding no-margin class="info"><a href="#">github.com/candelibas</a></p-->
+					</div>
+		
+
+		<div *ngIf="loSigo || (!userIdParams && userIdLogeado)">
+			<div *ngFor="let publication of publicationsUser">
+				<ion-card> 
+					<button *ngIf="publication.userId == userIdentity._id" (click)="goToOptionsPublication(publication.publicationId)" ion-button float-right  clear>
+						<ion-icon name="more"></ion-icon>
+					</button>
+					<ion-item (click)="goToProfileUser(publication.userId)">
+						<ion-avatar item-start>
+								<img #imagen
+								src="{{ publication.urlImage }}"
+								style="visibility:hidden;"
+								onload="this.style.visibility='visible'" onerror="this.src='http://www.gravatar.com/avatar?d=mm&s=140'"/>     					</ion-avatar>
+						<h2>{{publication.name +' '+ publication.surname }}</h2>
+						<p>@{{publication.nick}}</p>
+					</ion-item>
+					
+					<!--img src="img/advance-card-bttf.png"-->
+					<img *ngIf="publication.file != 'null'" src="{{publication.fileUrl}}">
+		
+					<ion-card-content>
+						<p>{{publication.text}}</p>
+					</ion-card-content>
+				
+						<ion-row>
+						<ion-col>
+							<button ion-button icon-left clear small>
+								<!--ion-icon name="thumbs-up"></ion-icon>
+								<div>12 Likes</div-->
+							</button>
+						</ion-col>
+						<ion-col>
+							<button ion-button icon-left clear small>
+								<!--ion-icon name="text"></ion-icon>
+								<div>4 Comments</div-->
+							</button>
+						</ion-col>
+						<ion-col center text-center>
+							<ion-note>
+								{{ (publication.created_at | amFromUnix) | amLocale: 'es' | amTimeAgo}}
+							</ion-note>
+						</ion-col>
+					</ion-row>
+				</ion-card>
+			</div>
+		
+			<ion-infinite-scroll (ionInfinite)="doInfinite($event)" *ngIf="page < pages">
+				<ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data..."></ion-infinite-scroll-content>
+			</ion-infinite-scroll>
+		</div>
+
+		<div *ngIf="!loSigo && userIdParams && userIdLogeado">
+			<p text-center>No sigues a este usuario</p>
+		</div>
+
+	</div>
+</ion-content>

@@ -1,0 +1,66 @@
+<ion-header>
+	<ion-navbar>
+		<ion-title text-center>Inicio</ion-title>
+		<ion-buttons end>
+			<button (click)="goToPublication()" ion-button icon-only>
+				<ion-icon name="create"></ion-icon>
+			</button>
+		</ion-buttons>
+	</ion-navbar>
+</ion-header>
+
+<ion-content>
+
+	<div class="publications">
+		<ion-refresher (ionRefresh)="doRefresh($event)">
+			<ion-refresher-content></ion-refresher-content>
+		</ion-refresher>
+	
+		<div *ngFor="let publication of publications">
+			<ion-card>
+				<ion-item (click)="goToProfileUser(publication.userId)">
+					<ion-avatar item-start>
+							<img #imagen
+							src="{{ publication.urlImage }}"
+							style="visibility:hidden;"
+							onload="this.style.visibility='visible'" onerror="this.src='http://www.gravatar.com/avatar?d=mm&s=140'"/>     					</ion-avatar>
+					<h2>{{publication.name +' '+ publication.surname }}</h2>
+					<p>@{{publication.nick}}</p>
+				</ion-item>
+				
+				<!--img src="img/advance-card-bttf.png"-->
+				<img *ngIf="publication.file != 'null'" src="{{publication.fileUrl}}">
+	
+				<ion-card-content>
+					<p>{{publication.text}}</p>
+				</ion-card-content>
+			
+					<ion-row>
+					<ion-col>
+						<button ion-button icon-left clear small>
+							<!--ion-icon name="thumbs-up"></ion-icon>
+							<div>12 Likes</div-->
+						</button>
+					</ion-col>
+					<ion-col>
+						<button ion-button icon-left clear small>
+							<!--ion-icon name="text"></ion-icon>
+							<div>4 Comments</div-->
+						</button>
+					</ion-col>
+					<ion-col center text-center>
+						<ion-note>
+              <!--{{ (publication.created_at | amFromUnix) | amLocale: 'es' | amTimeAgo}}-->
+              {{ (publication.created_at | amFromUnix) | amLocale: 'es' | amTimeAgo}}
+						</ion-note>
+					</ion-col>
+				</ion-row>
+			</ion-card>
+		</div>
+	
+		<ion-infinite-scroll (ionInfinite)="doInfinite($event)" *ngIf="page < pages">
+			<ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data..."></ion-infinite-scroll-content>
+		</ion-infinite-scroll>
+	</div>
+
+</ion-content>

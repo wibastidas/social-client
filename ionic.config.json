@@ -1,6 +1,8 @@
 {
   "name": "inmigram",
-  "app_id": "",
+  "app_id": "7873f5f3",
   "type": "ionic-angular",
-  "integrations": {}
+  "integrations": {
+    "cordova": {}
+  }
 }

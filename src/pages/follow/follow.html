@@ -1,0 +1,33 @@
+<ion-header>
+    <ion-navbar>
+        <ion-buttons start left>
+          <button ion-button icon-only (click)="dismiss()">
+          <ion-icon name="close"></ion-icon>
+          </button>
+        </ion-buttons>
+        <ion-title text-center>{{pageAction}}</ion-title>
+      </ion-navbar>
+  </ion-header>
+
+
+  <ion-content padding>
+  
+      <ion-list *ngIf="users">
+        <ion-item *ngFor="let user of users" no-lines>
+          <!--button (click)="goToUnFollowUser(user._id)" ion-button outline float-right>Siguiendo</button-->
+          <button *ngIf="follows.indexOf(user._id)  !== -1 && user._id != identity_id" (click)="goToUnFollowUser(user._id)" ion-button outline float-right>Siguiendo</button>
+          <button *ngIf="follows.indexOf(user._id)  == -1 && user._id != identity_id" (click)="followUser(user._id)" ion-button float-right>Seguir</button>
+          <ion-avatar (click)="goToProfileUser(user._id)" item-start>
+              <img #imagen src="{{ user.image }}" style="visibility:hidden;"
+                onload="this.style.visibility='visible'" onerror="this.src='http://www.gravatar.com/avatar?d=mm&s=140'"/>
+          </ion-avatar>
+          <h2>{{user.nick}}</h2>
+          <p>{{user.name}} {{user.surname}}</p>
+        </ion-item>
+      </ion-list>
+    
+      <ion-infinite-scroll (ionInfinite)="doInfinite($event)" *ngIf="page < pages">
+        <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data..."></ion-infinite-scroll-content>
+      </ion-infinite-scroll>
+    
+      </ion-content>

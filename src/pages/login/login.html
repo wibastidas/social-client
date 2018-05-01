@@ -1,0 +1,43 @@
+<ion-content>
+
+	<div class="login">
+
+		<div class="logo">
+			<img src="assets/imgs/appicon.svg" alt="Ionic logo">
+		</div>
+
+		<form #loginForm="ngForm">
+			<ion-list no-lines>
+				<ion-item>
+					<ion-label stacked color="primary">Email</ion-label>
+					<ion-input [(ngModel)]="user.email" name="email" type="text" #email="ngModel" spellcheck="false" autocapitalize="off"
+						required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+					</ion-input>
+				</ion-item>
+				<p ion-text *ngIf="!email.valid && email.touched" color="danger" padding-left>
+					El correo electrónico no es válido
+				</p>
+
+				<ion-item>
+					<ion-label stacked color="primary">Password</ion-label>
+					<ion-input [(ngModel)]="user.password" name="password" type="password" #password="ngModel" required>
+					</ion-input>
+				</ion-item>
+				<p ion-text *ngIf="!password.valid && password.touched" color="danger" padding-left>
+					El password es requerido
+				</p>
+			</ion-list>
+
+			<ion-row responsive-sm>
+				<ion-col>
+					<button ion-button (click)="onLogin(loginForm)" [disabled]="!loginForm.form.valid" type="submit" block>Iniciar Sesión</button>
+				</ion-col>
+				<ion-col>
+					<button ion-button (click)="onRegister()" color="light" block>Regístrate</button>
+				</ion-col>
+			</ion-row>
+		</form>
+
+	</div>
+	
+</ion-content>
