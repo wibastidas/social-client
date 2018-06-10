@@ -11,6 +11,7 @@ import { IonicStorageModule } from '@ionic/storage';
 import { PublicationsServiceProvider } from '../providers/publications-service/publications-service';
 import { PeopleServiceProvider } from '../providers/people-service/people-service';
 import { UploadProvider } from '../providers/upload/upload';
+import { MessageServiceProvider } from '../providers/message-service/message-service';
 
 
 @NgModule({
@@ -38,7 +39,8 @@ import { UploadProvider } from '../providers/upload/upload';
     UserServiceProvider,
     PublicationsServiceProvider,
     PeopleServiceProvider, 
-    UploadProvider
+    UploadProvider,
+    MessageServiceProvider
   ]
 })
 export class AppModule {}

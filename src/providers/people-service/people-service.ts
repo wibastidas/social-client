@@ -52,6 +52,12 @@ export class PeopleServiceProvider {
 
     return this.apiServiceProvider.get('followed/'+ userId + '/'+ page);
   }
+
+  //usuarios que sigo
+  getMyFollows(): Promise<any> { 
+
+    return this.apiServiceProvider.get('get-my-follows/true');
+  }
   
   
 

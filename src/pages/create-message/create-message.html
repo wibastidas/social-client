@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-navbar>
+      <ion-buttons end>
+        <button ion-button icon-only (click)="dismiss()">
+        <ion-icon name="close"></ion-icon>
+        </button>
+      </ion-buttons>
+      <ion-title text-center>Enviar Mensaje</ion-title>
+    </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+
+  <ion-list *ngIf="follows">
+    <ion-item>
+      <ion-label>Enviar a: </ion-label>
+      <ion-select interface="popover" [(ngModel)]="receiver">
+        <ion-option *ngFor="let follow of follows" value="{{follow.user._id}}">{{follow.user.name}} {{follow.user.surname}}</ion-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+  
+</ion-content>
+
+
+<ion-footer>
+  <ion-grid>
+    <ion-row>
+      <ion-input (ngModelChange)='cambioTextSelect()' [(ngModel)]="text" type="text" placeholder="Escribir mensaje" name="send"></ion-input>
+      <button [disabled]="!habilitarEnviarMensaje"  (click)="enviar()" ion-button clear item-end><ion-icon name="send" color="primary"></ion-icon></button>
+    </ion-row>
+  </ion-grid>
+</ion-footer>

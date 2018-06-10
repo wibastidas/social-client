@@ -3,7 +3,7 @@
 		<ion-title text-center>Inicio</ion-title>
 		<ion-buttons end>
 			<button (click)="goToPublication()" ion-button icon-only>
-				<ion-icon name="create"></ion-icon>
+				<ion-icon name="ios-create-outline"></ion-icon>
 			</button>
 		</ion-buttons>
 	</ion-navbar>
@@ -28,7 +28,6 @@
 					<p>@{{publication.nick}}</p>
 				</ion-item>
 				
-				<!--img src="img/advance-card-bttf.png"-->
 				<img *ngIf="publication.file != 'null'" src="{{publication.fileUrl}}">
 	
 				<ion-card-content>
@@ -38,19 +37,14 @@
 					<ion-row>
 					<ion-col>
 						<button ion-button icon-left clear small>
-							<!--ion-icon name="thumbs-up"></ion-icon>
-							<div>12 Likes</div-->
 						</button>
 					</ion-col>
 					<ion-col>
 						<button ion-button icon-left clear small>
-							<!--ion-icon name="text"></ion-icon>
-							<div>4 Comments</div-->
 						</button>
 					</ion-col>
 					<ion-col center text-center>
 						<ion-note>
-              <!--{{ (publication.created_at | amFromUnix) | amLocale: 'es' | amTimeAgo}}-->
               {{ (publication.created_at | amFromUnix) | amLocale: 'es' | amTimeAgo}}
 						</ion-note>
 					</ion-col>

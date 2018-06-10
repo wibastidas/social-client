@@ -51,7 +51,7 @@
 					</div>
 		
 
-		<div *ngIf="loSigo || (!userIdParams && userIdLogeado)">
+		<div *ngIf="loSigo || (!userIdParams && userIdLogeado) || (userIdParams == userIdLogeado)">
 			<div *ngFor="let publication of publicationsUser">
 				<ion-card> 
 					<button *ngIf="publication.userId == userIdentity._id" (click)="goToOptionsPublication(publication.publicationId)" ion-button float-right  clear>
@@ -101,7 +101,7 @@
 			</ion-infinite-scroll>
 		</div>
 
-		<div *ngIf="!loSigo && userIdParams && userIdLogeado">
+		<div *ngIf="!loSigo && userIdParams && userIdLogeado && userIdParams != userIdLogeado">
 			<p text-center>No sigues a este usuario</p>
 		</div>
 
