@@ -57,8 +57,6 @@ export class PeopleServiceProvider {
   getMyFollows(): Promise<any> { 
 
     return this.apiServiceProvider.get('get-my-follows/true');
-  }
-  
-  
+  } 
 
 }

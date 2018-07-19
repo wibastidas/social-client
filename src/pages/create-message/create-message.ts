@@ -33,8 +33,7 @@ export class CreateMessagePage {
 
     this.obtenerUsuarioLogeado();
     this.getMyFollows();
-  }
-  
+  }  
 
   obtenerUsuarioLogeado(){
     this.userServiceProvider.getUserIdentity().then((userIdentity) => {
@@ -45,10 +44,13 @@ export class CreateMessagePage {
   getMyFollows(){
     this.peopleServiceProvider.getMyFollows().then(response => {
       this.follows = response.follows;
+      console.log(" this.follows",  this.follows);
     }).catch(error => {
       console.log("error: ", error);
     });
   }
+
+
 
   cambioTextSelect(){
 
