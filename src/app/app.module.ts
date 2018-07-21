@@ -12,7 +12,8 @@ import { PublicationsServiceProvider } from '../providers/publications-service/p
 import { PeopleServiceProvider } from '../providers/people-service/people-service';
 import { UploadProvider } from '../providers/upload/upload';
 import { MessageServiceProvider } from '../providers/message-service/message-service';
-
+import { Camera } from '@ionic-native/camera';
+import { FileTransfer } from '@ionic-native/file-transfer';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,9 @@ import { MessageServiceProvider } from '../providers/message-service/message-ser
     PublicationsServiceProvider,
     PeopleServiceProvider, 
     UploadProvider,
-    MessageServiceProvider
+    MessageServiceProvider,
+    Camera,
+    FileTransfer
   ]
 })
 export class AppModule {}

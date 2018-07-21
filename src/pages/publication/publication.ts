@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController, Events, Platform } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController, Events, Platform, ActionSheetController } from 'ionic-angular';
 import { GLOBAL } from '../../providers/global';
 import { User } from '../../models/user';
 import { UserServiceProvider } from '../../providers/user-service/user-service';
 import { Publication } from '../../models/publication';
 import { PublicationsServiceProvider } from '../../providers/publications-service/publications-service';
 import { UploadProvider } from '../../providers/upload/upload';
+import { Camera, CameraOptions } from '@ionic-native/camera';
 
 @IonicPage()
 @Component({
@@ -32,7 +33,9 @@ export class PublicationPage {
               public publicationsServiceProvider: PublicationsServiceProvider, 
               public uploadProvider: UploadProvider,
               public navParams: NavParams, 
-              public platform: Platform ) {
+              public platform: Platform , 
+              private camera: Camera,
+              private actionSheetCtrl: ActionSheetController) {
     this.url = GLOBAL.url;
     this.obtenerUsuarioLogeado();
     this.obtenerTokenUser();
@@ -132,6 +135,75 @@ export class PublicationPage {
 
   dismiss() {
     this.viewCtrl.dismiss();
+  }
+
+
+  getImagen(){
+    const options: CameraOptions = {
+      quality: 100,
+      destinationType: this.camera.DestinationType.FILE_URI,
+      encodingType: this.camera.EncodingType.JPEG,
+      mediaType: this.camera.MediaType.PICTURE
+    }
+    
+    this.camera.getPicture(options).then((imageData) => {
+     // imageData is either a base64 encoded string or a file URI
+     // If it's base64 (DATA_URL):
+     let base64Image = 'data:image/jpeg;base64,' + imageData;
+    }, (err) => {
+     // Handle error
+    });
+  }
+
+  presentActionSheet() {
+    let actionSheet = this.actionSheetCtrl.create({
+      title: 'Select Image Source',
+      buttons: [
+        {
+          text: 'Load from Library',
+          handler: () => {
+            this.takePicture(this.camera.PictureSourceType.PHOTOLIBRARY);
+          }
+        },
+        {
+          text: 'Use Camera',
+          handler: () => {
+            this.takePicture(this.camera.PictureSourceType.CAMERA);
+          }
+        },
+        {
+          text: 'Cancel',
+          role: 'cancel'
+        }
+      ]
+    });
+    actionSheet.present();
+  }
+
+  public takePicture(sourceType) {
+    // Create options for the Camera Dialog
+    var options = {
+      quality: 100,
+      destinationType: this.camera.DestinationType.FILE_URI,
+      sourceType: sourceType,
+      saveToPhotoAlbum: false,
+      correctOrientation: true
+    };
+ 
+    // Get the data of an image
+    this.camera.getPicture(options).then((imagePath) => {
+      console.log("getPicture : ", imagePath);
+      this.filesToUpload = imagePath;
+      /*let modal = this.modalCtrl.create('UploadModalPage', { data: imagePath });
+      modal.present();
+      modal.onDidDismiss(data => {
+        if (data && data.reload) {
+          this.reloadImages();
+        }
+      });*/
+    }, (err) => {
+      console.log('Error: ', err);
+    });
   }
 
 }

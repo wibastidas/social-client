@@ -25,7 +25,7 @@
     </ion-avatar> 
         <ion-textarea [(ngModel)]="text" (ngModelChange)='cambioText()' placeholder="¿Qué estas pensando?"></ion-textarea>
   </ion-item>
-  <ion-card *ngIf="!isCordova">
+  <ion-card>
       <!--img src="assets/img/appicon.svg" alt="Ionic logo"-->
       <img *ngIf="urlImagePublication" src="{{urlImagePublication}}">
   </ion-card>
@@ -42,4 +42,8 @@
 
   </ion-item>
   
+  <ion-fab *ngIf="isCordova" right bottom>
+    <button ion-fab (click)="presentActionSheet()"><ion-icon name="camera"></ion-icon></button>
+  </ion-fab>
+
 </ion-content>
