@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController, Events } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController, Events, Platform } from 'ionic-angular';
 import { GLOBAL } from '../../providers/global';
 import { User } from '../../models/user';
 import { UserServiceProvider } from '../../providers/user-service/user-service';
@@ -23,6 +23,7 @@ export class PublicationPage {
   public urlImagePublication: string;
   public adjuntoImagen: boolean = false;
   public token: string;
+  public isCordova: boolean;
 
   constructor(public navCtrl: NavController, 
               public viewCtrl: ViewController, 
@@ -30,10 +31,25 @@ export class PublicationPage {
               public userServiceProvider: UserServiceProvider, 
               public publicationsServiceProvider: PublicationsServiceProvider, 
               public uploadProvider: UploadProvider,
-              public navParams: NavParams) {
+              public navParams: NavParams, 
+              public platform: Platform ) {
     this.url = GLOBAL.url;
     this.obtenerUsuarioLogeado();
     this.obtenerTokenUser();
+    this.checkPlatform();
+    console.log("constructor   ");
+     
+  }
+
+  checkPlatform() {
+    console.log("checkPlatform");
+    if (this.platform.is('cordova')) {
+      console.log("checkPlatform cordova");
+      this.isCordova = true;
+    } else {
+      this.isCordova = false;
+      console.log("checkPlatform no es cordova");
+    }
   }
 
   obtenerUsuarioLogeado(){

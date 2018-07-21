@@ -22,17 +22,17 @@
         src="{{ urlImage }}"
         style="visibility:hidden;"
         onload="this.style.visibility='visible'" onerror="this.src='http://www.gravatar.com/avatar?d=mm&s=140'"/>          
-    </ion-avatar>
+    </ion-avatar> 
         <ion-textarea [(ngModel)]="text" (ngModelChange)='cambioText()' placeholder="¿Qué estas pensando?"></ion-textarea>
   </ion-item>
-  <ion-card>
+  <ion-card *ngIf="!isCordova">
       <!--img src="assets/img/appicon.svg" alt="Ionic logo"-->
       <img *ngIf="urlImagePublication" src="{{urlImagePublication}}">
   </ion-card>
 
   <!--input type="file" accept="image/x-png,image/jpeg" (change)='fileChangeEvent($event)'-->
 
-  <ion-item no-lines>
+  <ion-item no-lines *ngIf="!isCordova">
     <label>{{label}}</label>
     <input type="file" accept="image/x-png,image/jpeg" capture="camera"  (change)="fileChangeEvent($event)" id="file-input" style="opacity: 0" #fileInp>
 
