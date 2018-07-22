@@ -7,7 +7,6 @@ import { Publication } from '../../models/publication';
 import { PublicationsServiceProvider } from '../../providers/publications-service/publications-service';
 import { UploadProvider } from '../../providers/upload/upload';
 import { Camera, CameraOptions } from '@ionic-native/camera';
-//import { File } from '@ionic-native/file'; 
 
 @IonicPage()
 @Component({
@@ -30,7 +29,6 @@ export class PublicationPage {
   constructor(public navCtrl: NavController, 
               public viewCtrl: ViewController, 
               public events: Events, 
-              private file: File,
               public userServiceProvider: UserServiceProvider, 
               public publicationsServiceProvider: PublicationsServiceProvider, 
               public uploadProvider: UploadProvider,
@@ -139,8 +137,6 @@ export class PublicationPage {
     this.viewCtrl.dismiss();
   }
 
-  
-
 
   getImagen(){
     const options: CameraOptions = {
@@ -209,25 +205,5 @@ export class PublicationPage {
       console.log('Error: ', err);
     });
   }
-
-
-  /*private uploadPhoto(imageFileUri: any): void {
-    this.file.resolveLocalFilesystemUrl(imageFileUri: any)
-      .then(entry => (<FileEntry>entry).file(file => this.readFile(file)))
-      .catch(err => console.log(err));
-      
-  }
-
-  private readFile(file: any) {
-    const reader = new FileReader();
-    reader.onloadend = () => {
-      const formData = new FormData();
-      const imgBlob = new Blob([reader.result], {type: file.type});
-      formData.append('file', imgBlob, file.name);
-      this.postData(formData);
-    };
-    reader.readAsArrayBuffer(file);
-  }*/
-
 
 }

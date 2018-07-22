@@ -14,6 +14,7 @@ import { UploadProvider } from '../providers/upload/upload';
 import { MessageServiceProvider } from '../providers/message-service/message-service';
 import { Camera } from '@ionic-native/camera';
 import { FileTransfer } from '@ionic-native/file-transfer';
+import { File } from '@ionic-native/file'; 
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { FileTransfer } from '@ionic-native/file-transfer';
     UploadProvider,
     MessageServiceProvider,
     Camera,
-    FileTransfer
+    FileTransfer,
+    File
   ]
 })
 export class AppModule {}
