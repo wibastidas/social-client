@@ -23,6 +23,7 @@
     "@angular/platform-browser-dynamic": "5.2.9",
     "@ionic-native/camera": "^4.10.0",
     "@ionic-native/core": "4.6.0",
+    "@ionic-native/file": "^4.10.0",
     "@ionic-native/file-path": "^4.10.0",
     "@ionic-native/file-transfer": "^4.10.0",
     "@ionic-native/splash-screen": "4.6.0",
@@ -63,7 +64,8 @@
       "cordova-plugin-ionic-keyboard": {},
       "cordova-plugin-file-transfer": {},
       "cordova-plugin-camera": {},
-      "cordova-plugin-filepath": {}
+      "cordova-plugin-filepath": {},
+      "cordova-plugin-file": {}
     },
     "platforms": [
       "android",
