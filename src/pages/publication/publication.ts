@@ -20,7 +20,7 @@ export class PublicationPage {
   public publication: Publication;
   public text: string;
   public habilitarEnviarPublicacion: boolean = false;
-  public filesToUpload : Array<File>;
+  public filesToUpload : any;
   public urlImagePublication: string;
   public adjuntoImagen: boolean = false;
   public token: string;
@@ -193,7 +193,8 @@ export class PublicationPage {
     // Get the data of an image
     this.camera.getPicture(options).then((imagePath) => {
       console.log("getPicture : ", imagePath);
-      this.filesToUpload = imagePath;
+      this.filesToUpload = this.dataURItoBlob('data:image/jpeg;base64,' + imagePath);
+      ;
       /*let modal = this.modalCtrl.create('UploadModalPage', { data: imagePath });
       modal.present();
       modal.onDidDismiss(data => {
@@ -205,5 +206,18 @@ export class PublicationPage {
       console.log('Error: ', err);
     });
   }
+
+  dataURItoBlob(dataURI) {
+    // code adapted from: http://stackoverflow.com/questions/33486352/cant-upload-image-to-aws-s3-from-ionic-camera
+    let binary = atob(dataURI.split(',')[1]);
+    let array = [];
+    for (let i = 0; i < binary.length; i++) {
+      array.push(binary.charCodeAt(i));
+    }
+    return new Blob([new Uint8Array(array)], {type: 'image/jpeg'});
+  };
+
+
+  
 
 }
