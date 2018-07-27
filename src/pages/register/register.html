@@ -52,6 +52,25 @@
 					El nombre de usuario es requerido
 				</p>
 
+
+				<ion-item>
+					<ion-label stacked color="primary">Nacionalidad</ion-label>
+					<ion-input [(ngModel)]="signup.nacionalidad" name="nacionalidad" type="text" #nick="ngModel" required>
+					</ion-input>
+				</ion-item>
+				<p ion-text *ngIf="!nick.nacionalidad && nick.touched" color="danger" padding-left>
+					La nacionalidad de usuario es requerida
+				</p>
+
+				<ion-item>
+					<ion-label stacked color="primary">Pais de residencia </ion-label>
+					<ion-input [(ngModel)]="signup.residencia" name="residencia" type="text" #nick="ngModel" required>
+					</ion-input>
+				</ion-item>
+				<p ion-text *ngIf="!nick.residencia && nick.touched" color="danger" padding-left>
+					El pais de residencia de usuario es requerido
+				</p>
+
 				<ion-item>
 					<ion-label stacked color="primary">Password</ion-label>
 					<ion-input [(ngModel)]="signup.password" name="password" type="password" #password="ngModel" required>

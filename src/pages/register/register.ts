@@ -11,7 +11,7 @@ import { UserServiceProvider } from '../../providers/user-service/user-service';
   templateUrl: 'register.html',
 })
 export class RegisterPage {
-  signup: User = { email: '', name: '', surname: '', nick: '', password: '', role: 'ROLE_USER', image:''};
+  signup: User = { email: '', name: '', surname: '', nick: '', nacionalidad: '', password: '', role: 'ROLE_USER', image:''};
   submitted = false;
 
   constructor(public navCtrl: NavController, 

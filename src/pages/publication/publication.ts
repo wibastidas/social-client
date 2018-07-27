@@ -118,11 +118,14 @@ export class PublicationPage {
   fileChangeEvent(event){
     this.filesToUpload = <Array<File>>event.target.files;
 
+    console.log("this.filesToUpload1 : ",this.filesToUpload );
+
     if(event.target.files && event.target.files[0]){
       let reader = new FileReader();
 
       reader.onload = (event:any) => {
         this.urlImagePublication = event.target.result;
+        //console.log("this.urlImagePublication chang: ",this.urlImagePublication );
         this.habilitarEnviarPublicacion = true;
         this.adjuntoImagen = true;
       }
@@ -137,23 +140,6 @@ export class PublicationPage {
     this.viewCtrl.dismiss();
   }
 
-
-  getImagen(){
-    const options: CameraOptions = {
-      quality: 100,
-      destinationType: this.camera.DestinationType.FILE_URI,
-      encodingType: this.camera.EncodingType.JPEG,
-      mediaType: this.camera.MediaType.PICTURE
-    }
-    
-    this.camera.getPicture(options).then((imageData) => {
-     // imageData is either a base64 encoded string or a file URI
-     // If it's base64 (DATA_URL):
-     let base64Image = 'data:image/jpeg;base64,' + imageData;
-    }, (err) => {
-     // Handle error
-    });
-  }
 
   presentActionSheet() {
     let actionSheet = this.actionSheetCtrl.create({
@@ -181,43 +167,40 @@ export class PublicationPage {
   }
 
   public takePicture(sourceType) {
-    // Create options for the Camera Dialog
-    var options = {
+
+    let options: CameraOptions = {
+      destinationType: this.camera.DestinationType.DATA_URL,
+      targetWidth: 1000,
+      targetHeight: 1000,
+      correctOrientation: true,
       quality: 100,
-      destinationType: this.camera.DestinationType.FILE_URI,
-      sourceType: sourceType,
-      saveToPhotoAlbum: false,
-      correctOrientation: true
-    };
- 
-    // Get the data of an image
-    this.camera.getPicture(options).then((imagePath) => {
-      console.log("getPicture : ", imagePath);
-      this.filesToUpload = this.dataURItoBlob('data:image/jpeg;base64,' + imagePath);
-      ;
-      /*let modal = this.modalCtrl.create('UploadModalPage', { data: imagePath });
-      modal.present();
-      modal.onDidDismiss(data => {
-        if (data && data.reload) {
-          this.reloadImages();
-        }
-      });*/
-    }, (err) => {
-      console.log('Error: ', err);
+      saveToPhotoAlbum: true,
+      sourceType: 0
+    }
+
+    this.camera.getPicture(options)
+    .then(imageData => {
+      this.urlImagePublication  = `data:image/jpeg;base64,${imageData}`;
+      this.filesToUpload  = this.dataURLtoFile(this.urlImagePublication,'hello.txt');
+      console.log("filesToUpload new: ", this.filesToUpload);
+
+
+    })
+    .catch(error => {
+      console.error(error);
     });
+ 
+
   }
 
-  dataURItoBlob(dataURI) {
-    // code adapted from: http://stackoverflow.com/questions/33486352/cant-upload-image-to-aws-s3-from-ionic-camera
-    let binary = atob(dataURI.split(',')[1]);
-    let array = [];
-    for (let i = 0; i < binary.length; i++) {
-      array.push(binary.charCodeAt(i));
+  dataURLtoFile(dataurl, filename) {
+    var arr = dataurl.split(','), mime = arr[0].match(/:(.*?);/)[1],
+        bstr = atob(arr[1]), n = bstr.length, u8arr = new Uint8Array(n);
+    while(n--){
+        u8arr[n] = bstr.charCodeAt(n);
     }
-    return new Blob([new Uint8Array(array)], {type: 'image/jpeg'});
-  };
-
-
+    return new File([u8arr], filename, {type:mime});
+  }
   
 
 }

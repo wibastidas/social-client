@@ -8,5 +8,6 @@ export class User {
   public role?: string;
   public image?: string;
   public gettoken?: boolean;
+  public nacionalidad: string;
   }
   
