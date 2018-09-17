@@ -3,15 +3,19 @@
 	<div class="login">
 
 		<div class="logo">
-			<img src="assets/imgs/appicon.svg" alt="Ionic logo">
+			<!--img src="assets/imgs/logo.png" alt="Ionic logo"-->
+			<ion-avatar item-start>
+				<ion-icon color="primary" style="font-size: 10.2em!important" name="ios-send-outline"></ion-icon>
+			</ion-avatar>
+
 		</div>
 
 		<form #loginForm="ngForm">
 			<ion-list no-lines>
 				<ion-item>
 					<ion-label stacked color="primary">Email</ion-label>
-					<ion-input [(ngModel)]="user.email" name="email" type="text" #email="ngModel" spellcheck="false" autocapitalize="off"
-					text-lowercase required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+					<ion-input [(ngModel)]="user.email" name="email" type="text" #email="ngModel" spellcheck="false" autocapitalize="off" text-lowercase
+					 required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
 					</ion-input>
 				</ion-item>
 				<p ion-text *ngIf="!email.valid && email.touched" color="danger" padding-left>
@@ -30,14 +34,33 @@
 
 			<ion-row responsive-sm>
 				<ion-col>
-					<button ion-button (click)="onLogin(loginForm)" [disabled]="!loginForm.form.valid" type="submit" block>Iniciar Sesión</button>
+					<button ion-button (click)="onLogin(loginForm)" [disabled]="!loginForm.form.valid" type="submit" block>Ingresar</button>
 				</ion-col>
 				<ion-col>
 					<button ion-button (click)="onRegister()" color="light" block>Regístrate</button>
 				</ion-col>
 			</ion-row>
+			<ion-row>
+				<ion-item text-center>
+					<span>o</span>
+				</ion-item>
+			</ion-row>
+			<ion-row responsive-sm>
+				<ion-col>
+					<button color="facebook" ion-button block>
+						<ion-icon name="logo-facebook"></ion-icon>
+						&nbsp; Ingresar con Facebook</button>
+				</ion-col>
+			</ion-row>
+			<ion-row responsive-sm>
+				<ion-col>
+					<button color="google" ion-button block>
+						<ion-icon name="logo-google"></ion-icon>
+						&nbsp; Ingresar con Google</button>
+				</ion-col>
+			</ion-row>
 		</form>
 
 	</div>
-	
+
 </ion-content>

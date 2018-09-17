@@ -118,8 +118,6 @@ export class PublicationPage {
   fileChangeEvent(event){
     this.filesToUpload = <Array<File>>event.target.files;
 
-    console.log("this.filesToUpload1 : ",this.filesToUpload );
-
     if(event.target.files && event.target.files[0]){
       let reader = new FileReader();
 
@@ -139,68 +137,5 @@ export class PublicationPage {
   dismiss() {
     this.viewCtrl.dismiss();
   }
-
-
-  presentActionSheet() {
-    let actionSheet = this.actionSheetCtrl.create({
-      title: 'Select Image Source',
-      buttons: [
-        {
-          text: 'Load from Library',
-          handler: () => {
-            this.takePicture(this.camera.PictureSourceType.PHOTOLIBRARY);
-          }
-        },
-        {
-          text: 'Use Camera',
-          handler: () => {
-            this.takePicture(this.camera.PictureSourceType.CAMERA);
-          }
-        },
-        {
-          text: 'Cancel',
-          role: 'cancel'
-        }
-      ]
-    });
-    actionSheet.present();
-  }
-
-  public takePicture(sourceType) {
-
-    let options: CameraOptions = {
-      destinationType: this.camera.DestinationType.DATA_URL,
-      targetWidth: 1000,
-      targetHeight: 1000,
-      correctOrientation: true,
-      quality: 100,
-      saveToPhotoAlbum: true,
-      sourceType: 0
-    }
-
-    this.camera.getPicture(options)
-    .then(imageData => {
-      this.urlImagePublication  = `data:image/jpeg;base64,${imageData}`;
-      this.filesToUpload  = this.dataURLtoFile(this.urlImagePublication,'hello.txt');
-      console.log("filesToUpload new: ", this.filesToUpload);
-
-
-    })
-    .catch(error => {
-      console.error(error);
-    });
- 
-
-  }
-
-  dataURLtoFile(dataurl, filename) {
-    var arr = dataurl.split(','), mime = arr[0].match(/:(.*?);/)[1],
-        bstr = atob(arr[1]), n = bstr.length, u8arr = new Uint8Array(n);
-    while(n--){
-        u8arr[n] = bstr.charCodeAt(n);
-    }
-    return new File([u8arr], filename, {type:mime});
-  }
-  
 
 }

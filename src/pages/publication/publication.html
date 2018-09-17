@@ -32,18 +32,13 @@
 
   <!--input type="file" accept="image/x-png,image/jpeg" (change)='fileChangeEvent($event)'-->
 
-  <ion-item no-lines *ngIf="!isCordova">
+  <ion-item no-lines>
     <label>{{label}}</label>
-    <input type="file" accept="image/x-png,image/jpeg" capture="camera"  (change)="fileChangeEvent($event)" id="file-input" style="opacity: 0" #fileInp>
+    <input type="file" accept="image/*"  (change)="fileChangeEvent($event)" id="file-input" style="opacity: 0"  #fileInp>
 
     <div (click)="onClick()" text-center>
       <ion-icon color="primary" style="font-size: 3.2em;" name="ios-camera-outline"></ion-icon>
     </div>
-
   </ion-item>
-  
-  <ion-fab *ngIf="isCordova" right bottom>
-    <button ion-fab (click)="presentActionSheet()"><ion-icon name="camera"></ion-icon></button>
-  </ion-fab>
 
 </ion-content>

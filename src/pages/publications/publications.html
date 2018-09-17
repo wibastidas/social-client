@@ -1,6 +1,6 @@
 <ion-header>
 	<ion-navbar>
-		<ion-title text-center>Inicio</ion-title>
+		<ion-title text-center>Inmigram</ion-title>
 		<ion-buttons end>
 			<button (click)="goToPublication()" ion-button icon-only>
 				<ion-icon name="ios-create-outline"></ion-icon>
@@ -15,26 +15,82 @@
 		<ion-refresher (ionRefresh)="doRefresh($event)">
 			<ion-refresher-content></ion-refresher-content>
 		</ion-refresher>
-	
+		<ion-slides padding slidesPerView="4.5" spaceBetween="10">
+			<ion-slide text-center>
+				<ion-avatar item-start>
+					<ion-icon color="grey" style="font-size: 3.2em!important" name="ios-pin-outline"></ion-icon>
+				</ion-avatar>
+				<div style="font-size: 13px;">
+					Alquileres
+				</div>
+			</ion-slide>
+			<ion-slide text-center>
+				<ion-avatar item-start>
+					<ion-icon color="grey" style="font-size: 3.2em!important" name="ios-briefcase-outline"></ion-icon>
+				</ion-avatar>
+				<div style="font-size: 13px;">
+					Empleos
+				</div>
+			</ion-slide>
+			<ion-slide text-center>
+				<ion-avatar item-start>
+					<ion-icon color="grey" style="font-size: 3.2em!important" name="ios-paper-outline"></ion-icon>
+				</ion-avatar>
+				<div style="font-size: 13px;">
+					Documentos
+				</div>
+			</ion-slide>
+			<ion-slide text-center>
+				<ion-avatar item-start>
+					<ion-icon color="grey" style="font-size: 3.2em!important" name="ios-school-outline"></ion-icon>
+				</ion-avatar>
+				<div style="font-size: 13px;">
+					Estudios
+				</div>
+			</ion-slide>
+			<ion-slide text-center>
+				<ion-avatar item-start>
+					<ion-icon color="grey" style="font-size: 3.2em!important" name="ios-ice-cream-outline"></ion-icon>
+				</ion-avatar>
+				<div style="font-size: 13px;">
+					Ocio
+				</div>
+			</ion-slide>
+			<ion-slide text-center>
+				<ion-avatar item-start>
+					<ion-icon color="grey" style="font-size: 3.2em!important" name="ios-pricetags-outline"></ion-icon>
+				</ion-avatar>
+				<div style="font-size: 13px;">
+					Se vende
+				</div>
+			</ion-slide>
+			<ion-slide text-center>
+				<ion-avatar item-start>
+					<ion-icon color="grey" style="font-size: 3.2em!important" name="ios-beer-outline"></ion-icon>
+				</ion-avatar>
+				<div style="font-size: 13px;">
+					Lugares
+				</div>
+			</ion-slide>
+		</ion-slides>
+
 		<div *ngFor="let publication of publications">
 			<ion-card>
 				<ion-item (click)="goToProfileUser(publication.userId)">
 					<ion-avatar item-start>
-							<img #imagen
-							src="{{ publication.urlImage }}"
-							style="visibility:hidden;"
-							onload="this.style.visibility='visible'" onerror="this.src='http://www.gravatar.com/avatar?d=mm&s=140'"/>     					</ion-avatar>
+						<img #imagen src="{{ publication.urlImage }}" style="visibility:hidden;" onload="this.style.visibility='visible'" onerror="this.src='http://www.gravatar.com/avatar?d=mm&s=140'"
+						/> </ion-avatar>
 					<h2>{{publication.name +' '+ publication.surname }}</h2>
 					<p>@{{publication.nick}}</p>
 				</ion-item>
-				
+
 				<img *ngIf="publication.file != 'null'" src="{{publication.fileUrl}}">
-	
+
 				<ion-card-content>
 					<p>{{publication.text}}</p>
 				</ion-card-content>
-			
-					<ion-row>
+
+				<ion-row>
 					<ion-col>
 						<button ion-button icon-left clear small>
 						</button>
@@ -45,13 +101,13 @@
 					</ion-col>
 					<ion-col center text-center>
 						<ion-note>
-              {{ (publication.created_at | amFromUnix) | amLocale: 'es' | amTimeAgo}}
+							{{ (publication.created_at | amFromUnix) | amLocale: 'es' | amTimeAgo}}
 						</ion-note>
 					</ion-col>
 				</ion-row>
 			</ion-card>
 		</div>
-	
+
 		<ion-infinite-scroll (ionInfinite)="doInfinite($event)" *ngIf="page < pages">
 			<ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data..."></ion-infinite-scroll-content>
 		</ion-infinite-scroll>

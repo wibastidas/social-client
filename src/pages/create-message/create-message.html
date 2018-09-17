@@ -28,7 +28,7 @@
   <ion-grid>
     <ion-row>
       <ion-input (ngModelChange)='cambioTextSelect()' [(ngModel)]="text" type="text" placeholder="Escribir mensaje" name="send"></ion-input>
-      <button [disabled]="!habilitarEnviarMensaje"  (click)="enviar()" ion-button clear item-end><ion-icon name="send" color="primary"></ion-icon></button>
+      <button [disabled]="!habilitarEnviarMensaje"  (click)="enviar()" ion-button clear item-end><ion-icon style="font-size: 3.2em!important" name="send" color="primary"></ion-icon></button>
     </ion-row>
   </ion-grid>
 </ion-footer>
