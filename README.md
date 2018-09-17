@@ -1,7 +1,7 @@
 # social-client
 ## Developing...
 
-![Screenshot Inicio](https://github.com/wibastidas/social-client/blob/master/src/assets/imgs/Capturas App/1.png)
+![Screenshot Inicio](https://github.com/wibastidas/social-client/blob/master/src/assets/imgs/Capturas%20App/1.png)
 
 ![Screenshot Inicio](https://github.com/wibastidas/social-client/blob/master/src/assets/imgs/Captura%20de%20pantalla%20de%202018-06-10%2012-04-11.png)
 
