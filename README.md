@@ -1,5 +1,8 @@
 # social-client
 ## Developing...
+
+<p float="left">
+
 <img src="https://github.com/wibastidas/social-client/blob/master/src/assets/imgs/Capturas%20App/1.png" alt="Screenshot" height="500"/>
 
 <img src="https://github.com/wibastidas/social-client/blob/master/src/assets/imgs/Capturas%20App/2.png" alt="Screenshot" height="500"/>
@@ -30,5 +33,6 @@
 
 <img src="https://github.com/wibastidas/social-client/blob/master/src/assets/imgs/Capturas%20App/15.png" alt="Screenshot" height="500"/>
 
+</p>
 
 
