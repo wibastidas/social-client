@@ -1,8 +1,8 @@
 # social-client
 ## Developing...
 
-![Screenshot Inicio](https://github.com/wibastidas/social-client/blob/master/src/assets/imgs/Capturas%20App/1.png)
-![Screenshot Inicio](https://github.com/wibastidas/social-client/blob/master/src/assets/imgs/Capturas%20App/2.png)
+![Screenshot Inicio](https://github.com/wibastidas/social-client/blob/master/src/assets/imgs/Capturas%20App/1.png =400x200)
+![Screenshot Inicio](https://github.com/wibastidas/social-client/blob/master/src/assets/imgs/Capturas%20App/2.png =200x100)
 ![Screenshot Inicio](https://github.com/wibastidas/social-client/blob/master/src/assets/imgs/Capturas%20App/3.png)
 ![Screenshot Inicio](https://github.com/wibastidas/social-client/blob/master/src/assets/imgs/Capturas%20App/4.png)
 ![Screenshot Inicio](https://github.com/wibastidas/social-client/blob/master/src/assets/imgs/Capturas%20App/5.png)
