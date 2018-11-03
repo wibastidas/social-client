@@ -1,5 +1,7 @@
 # social-client
 ## Developing...
+<img src="https://github.com/wibastidas/social-client/blob/master/src/assets/imgs/Capturas%20App/1.png" alt="drawing" height="200"/>
+
 
 ![Screenshot Inicio](https://github.com/wibastidas/social-client/blob/master/src/assets/imgs/Capturas%20App/1.png =400x200)
 ![Screenshot Inicio](https://github.com/wibastidas/social-client/blob/master/src/assets/imgs/Capturas%20App/2.png =200x100)
